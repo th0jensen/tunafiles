@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+  output          = "../src/generated"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Car {
+  id          Int              @id @default(autoincrement())
+  modelName   String
+  regNumber   String           @unique
+  engine      String
+  information CarInformation[]
+  binaries    Binary[]
+  order       Order[]
+  tags        Tag[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([modelName])
+}
+
+model CarInformation {
+  id                Int      @id @default(autoincrement())
+  car               Car      @relation(fields: [id], references: [id])
+  vehicleType       String
+  manufacturer      String
+  model             String
+  generation        String
+  engine            String
+  year              DateTime
+  gearbox           String
+  ecuType           String
+  ecuHardwareNumber String?
+  ecuSoftwareNumber String?
+}
+
+model Order {
+  id             Int    @id @unique @default(autoincrement())
+  car            Car    @relation(fields: [carId], references: [id])
+  handledBy      User   @relation(fields: [userId], references: [id])
+  readTool       String
+  requestedStage String
+  userId         Int
+  carId          Int
+}
+
+model User {
+  id     Int     @id @unique @default(autoincrement())
+  name   String
+  admin  Boolean
+  phone  String
+  email  String
+  orders Order[]
+}
+
+model Binary {
+  id       Int    @id @default(autoincrement())
+  fileName String
+  filePath String
+  fileSize Int
+  car      Car?   @relation(fields: [carId], references: [id])
+  carId    Int?
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  colour    String
+  cars      Car[]
+  carId     Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+model Customer {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String?
+  email     String?
+  createdAt DateTime @default(now())
+
+  @@index([name])
+}

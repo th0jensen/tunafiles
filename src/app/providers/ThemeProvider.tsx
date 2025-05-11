@@ -1,0 +1,18 @@
+// app/providers/theme-provider.tsx
+"use client";
+
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { type ThemeProviderProps } from "next-themes";
+
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system" // Use system as default
+      enableSystem={true} // Enable system preference detection
+      {...props}
+    >
+      {children}
+    </NextThemesProvider>
+  );
+}
