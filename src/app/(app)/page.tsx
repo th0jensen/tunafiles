@@ -21,7 +21,7 @@ export default function Home() {
   const { data: orders = [] } = api.order.getOrders.useQuery();
   const carCount = cars.length;
   const orderCount = orders.length;
-  const recentOrders = orders;
+  const recentOrders = orders.slice(0, 5);
 
   return (
     <main className="space-y-8">
@@ -29,7 +29,7 @@ export default function Home() {
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button variant="outline">
               <PlusCircle className="h-4 w-4" /> Add New
             </Button>
           </DialogTrigger>

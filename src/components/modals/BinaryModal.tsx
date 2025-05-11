@@ -34,7 +34,7 @@ export function BinaryModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button variant="outline">
           <UploadIcon className="h-4 w-4" /> {triggerLabel}
         </Button>
       </DialogTrigger>

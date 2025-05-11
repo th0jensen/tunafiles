@@ -34,7 +34,7 @@ export function CarModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button variant="outline">
           <PlusCircle className="h-4 w-4" /> {triggerLabel}
         </Button>
       </DialogTrigger>

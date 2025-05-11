@@ -42,7 +42,9 @@ export default function CarsDashboardPage() {
                   <TableCell>{car.engine}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="outline" size="sm" asChild>
-                      <Link href={`/cars/${car.id}`}>View Details</Link>
+                      <Link className="pr-2" href={`/cars/${car.id}`}>
+                        View Details
+                      </Link>
                     </Button>
                   </TableCell>
                 </TableRow>

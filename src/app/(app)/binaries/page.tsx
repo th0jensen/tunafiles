@@ -16,9 +16,6 @@ import { api } from "~/trpc/react";
 export default function BinariesPage() {
   const { data: binaries = [], refetch } = api.binary.getBinaries.useQuery();
 
-  // The `isLoading` state is now handled by Next.js Suspense and the loading.tsx file.
-  // If there's an error or no data, it will be handled below.
-
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">

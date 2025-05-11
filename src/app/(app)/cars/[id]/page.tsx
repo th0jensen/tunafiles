@@ -71,7 +71,7 @@ export default function CarDetailPage() {
           </div>
           */}
           <div className="pt-4">
-            <Button>Order Service (Placeholder)</Button>
+            <Button variant="outline">Order Service (Placeholder)</Button>
           </div>
         </CardContent>
       </Card>
